@@ -11,9 +11,12 @@ int shootTimer;
 int hitTimer;
 int healTimer;
 color c;
+color c1;
+color c2;
 int amount;
 
 //Stats
+float knockBack;
 int maxLives = 10;
 int lives = 10;
 float shtSpeedScale;
@@ -42,13 +45,13 @@ ArrayList <Enemy> enemies;
 ArrayList <Explosion> explosions;
 
 /////VÅBENTYPE//////
-int weaponType=6;///
+int weaponType=5;///
 int meleeType=1;////
 ////////////////////
 
 
 void setup() {
-  size(1500, 1000, P2D); 
+  size(1500, 1000,P2D); 
   rectMode(CENTER);
   fx = new PostFX(this);
   balls = new ArrayList<Ball>();
@@ -108,7 +111,7 @@ void draw() {
   }
 
   p.update();
-  p.display(); 
+  p.display();
   p.weaponDetect();
   controlsMove();
   controlsShoot();

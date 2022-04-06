@@ -82,7 +82,7 @@ class DragonProjectile extends Ball
   DragonProjectile()
   {
     super();
-    life = 100;
+    life = 1000;
     decay = 30;
   }
 

@@ -91,7 +91,7 @@ class Enemy {
       rect(location.x, location.y, 70, 70);
 
 
-      if (shots < 10) {
+      if (shots < 15) {
         speed = 1;
         eshootTimer++;
         if (eshootTimer > random(5, 10) ) {

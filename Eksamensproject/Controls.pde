@@ -79,6 +79,8 @@ void controlsShoot() {
         switch(meleeType) {
 
         case 1:
+          c1 = color(255);
+          c2 = color(150,0,0);
           swords.add(new Sword(new PVector(p.pos.x,p.pos.y)));
           hitSpeedScale = 1.2;
           mDamage = 0.5;
@@ -86,6 +88,8 @@ void controlsShoot() {
 
         case 2:
           swords.add(new Sword(p.pos));
+          c1 = color(255,100,0);
+          c2 = color(0,200,255);
           hitSpeedScale = 3;
           mDamage = 0.5;
           if(s.decay > 0) {

@@ -1,6 +1,7 @@
 class Player {
   PVector pos;
   PVector vel;
+  PVector rotation;
   int speed = 3;
   int wSize = 25;
   int hSize = 25;
@@ -9,8 +10,9 @@ class Player {
   Weapon currentWeapon;
 
   Player() {
-    pos = new PVector(400, y);
+    pos = new PVector(400, 500);
     vel = new PVector(0, 0);
+    rotation = new PVector(mouseX-pos.x, mouseY-pos.y);
   }
 
   void update() {
@@ -23,6 +25,7 @@ class Player {
     //tegner spilleren
     fill(random(100, 166), 233, 247);
     ellipse(pos.x, pos.y, wSize, wSize);
+
   }
 
   void weaponDetect() 
@@ -33,43 +36,39 @@ class Player {
       currentWeapon = new Pistol();
       shtSpeedScale = 1.2;
       amount=1;
+      knockBack = 1;
       break;
     
     case 2:
       currentWeapon = new Pistol();
-      shtSpeedScale = 1;
+      shtSpeedScale = 3.5;
       amount=6;
+      knockBack = 1;
       break;
       
      case 3:
       currentWeapon = new Pistol();
       shtSpeedScale = 0.25;
       amount=1;
+      knockBack = 0.5;
       break;
-    
 
     case 4:
-      currentWeapon = new Mjolnir();
-      shtSpeedScale = 1.2;
-      c = color(0, random(180, 230), 255);
-      antal_p = 15;
-      amount=1;
-      break;
-
-    case 5:
       currentWeapon = new Dragon();
       shtSpeedScale = 0.1;
       damage = 0.1;
       antal_p = 5;
       amount=1;
+      knockBack = 0.001;
       break;
       
-      case 6:
+      case 5:
       currentWeapon = new Rocket();
       shtSpeedScale = 5;
       damage = 2;
       antal_p = 5;
       amount=1;
+      knockBack = 5;
       break;
     }
   }

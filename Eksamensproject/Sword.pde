@@ -28,7 +28,10 @@ class Sword {
 
   void display() {
     antal_p=3;
-    c=color(255);
+    c=c1;
+    systems.add(new ParticleSystem(location.x, location.y));
+    antal_p = 1;
+    c=c2;
     systems.add(new ParticleSystem(location.x, location.y));
   }
   
