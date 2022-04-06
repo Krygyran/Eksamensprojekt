@@ -18,6 +18,8 @@ class Player {
   }
 
   void display() {
+    strokeWeight(1);
+    stroke(0);
     //tegner spilleren
     fill(random(100, 166), 233, 247);
     ellipse(pos.x, pos.y, wSize, wSize);
@@ -35,7 +37,7 @@ class Player {
     
     case 2:
       currentWeapon = new Pistol();
-      shtSpeedScale = 3;
+      shtSpeedScale = 1;
       amount=6;
       break;
       
@@ -58,6 +60,14 @@ class Player {
       currentWeapon = new Dragon();
       shtSpeedScale = 0.1;
       damage = 0.1;
+      antal_p = 5;
+      amount=1;
+      break;
+      
+      case 6:
+      currentWeapon = new Rocket();
+      shtSpeedScale = 5;
+      damage = 2;
       antal_p = 5;
       amount=1;
       break;

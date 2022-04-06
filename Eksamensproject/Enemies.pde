@@ -91,10 +91,10 @@ class Enemy {
       rect(location.x, location.y, 70, 70);
 
 
-      if (shots < 7) {
+      if (shots < 10) {
         speed = 1;
         eshootTimer++;
-        if (eshootTimer > random(10, 20) ) {
+        if (eshootTimer > random(5, 10) ) {
           eballs.add(new Enemy_ball(location.x, location.y, 1));
           eshootTimer = 0;
           shots++;
@@ -150,7 +150,7 @@ class Enemy {
         if (eshootTimer > random(30, 60) ) {
 
           for (int i = 0; i < eAmount; i++) {  
-            eballs.add(new Enemy_ball(location.x, location.y, 0.8));
+            eballs.add(new Enemy_ball(location.x, location.y, 1.5));
           }
           eshootTimer = 0;
           shots++;

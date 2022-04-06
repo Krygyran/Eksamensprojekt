@@ -78,7 +78,7 @@ class Pistol extends Weapon {
 
 class DragonProjectile extends Ball
 {
-  
+
   DragonProjectile()
   {
     super();
@@ -112,5 +112,56 @@ class Dragon extends Weapon {
   Ball GetProjectile()
   {
     return new DragonProjectile();
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class RocketProjectile extends Ball
+{
+
+  Weapon w;
+  RocketProjectile()
+  {
+    super();
+    decay = 30;
+  }
+
+  void update() {
+    velocity.normalize();
+    velocity.mult(20);
+    location.add(velocity);
+  }
+
+  void display() {
+    fill(50, 50, 50);
+    ellipse(location.x, location.y, 15, 15);
+    antal_p = 3;
+    c = color(255,255,255,150);
+    systems.add(new ParticleSystem(location.x, location.y));
+    antal_p = 1;
+    c = color(255, random(60, 180), 0);
+    systems.add(new ParticleSystem(location.x, location.y));
+
+    if (decay == 1) {
+      explosions.add(new Explosion(location));
+      translate(5, 5);
+      translate(-5, -5);
+      translate(5, -5);
+      translate(0, 0);
+    }
+  }
+}
+
+class Rocket extends Weapon {
+
+
+  Rocket() {
+    super("Rocket");
+  }
+
+  Ball GetProjectile()
+  {
+    return new RocketProjectile();
   }
 }

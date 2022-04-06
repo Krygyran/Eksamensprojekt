@@ -79,21 +79,22 @@ void controlsShoot() {
         switch(meleeType) {
 
         case 1:
-          swords.add(new Sword(new PVector(p.pos.x,p.pos.y)));//p.pos));
+          swords.add(new Sword(new PVector(p.pos.x,p.pos.y)));
           hitSpeedScale = 1.2;
-          mDamage = 0.2;
+          mDamage = 0.5;
           break;
 
         case 2:
           swords.add(new Sword(p.pos));
           hitSpeedScale = 3;
-          mDamage = 1;
+          mDamage = 0.5;
           if(s.decay > 0) {
            canHit= 0;
           } else {
            canHit = 60; 
           }
           break;
+          
         }
         hitTimer = 0;
       }

@@ -26,6 +26,7 @@ int canHit;
 PVector retning = new PVector();
 
 Player p = new Player();
+Explosion ex = new Explosion(new PVector(1,1));
 Ball b = new Ball();
 Sword s = new Sword(p.pos);
 Enemy e = new Enemy(round(random(1,3)));
@@ -38,9 +39,10 @@ ArrayList <Sword> swords;
 ArrayList<ParticleSystem> systems;
 ArrayList <Enemy_ball> eballs;
 ArrayList <Enemy> enemies;
+ArrayList <Explosion> explosions;
 
 /////VÅBENTYPE//////
-int weaponType=5;///
+int weaponType=6;///
 int meleeType=1;////
 ////////////////////
 
@@ -54,16 +56,19 @@ void setup() {
   systems = new ArrayList<ParticleSystem>();
   enemies = new ArrayList<Enemy>();
   eballs = new ArrayList<Enemy_ball>();
+  explosions = new ArrayList<Explosion>();
 }
 
 void draw() {
   background(0);
   
   detect();
+  clearEX();
   detect2();
   detect3();
   detect4();
   detect5();
+  detect6();
   delete();
   deleteE();
 
@@ -71,6 +76,11 @@ void draw() {
     b.update();
     b.display();
     b.decay--;
+  }
+  
+  for (Explosion ex : explosions) {
+    ex.display();
+    ex.decay--;
   }
   
   for (Enemy e : enemies) {
@@ -111,9 +121,13 @@ void draw() {
     dashReset++;
   }
   
-  if (healTimer > 60 && heal == true) {
+  if (healTimer > 180 && heal == true) {
     lives++;
     healTimer = 0;
+    heal = false;
+  }
+  
+  if(healTimer < 180){
     heal = false;
   }
   

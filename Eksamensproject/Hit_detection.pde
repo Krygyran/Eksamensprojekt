@@ -16,6 +16,14 @@ void detect2() {
         antal_p=30;
         c = color(209, 46, 46);
         systems.add(new ParticleSystem(e.location.x, e.location.y));
+
+        if (weaponType == 6) {
+          explosions.add(new Explosion(b.location));
+          translate(5, 5);
+          translate(-5, -5);
+          translate(5, -5);
+          translate(0, 0);
+        }
       }
       if (e.eLife <= 0) {
         enemies.remove(e);
@@ -55,10 +63,33 @@ void detect3() {
   }
 }
 
+void detect4() {
+  for (int i =explosions.size()-1; i >= 0; i--) {
+    Explosion ex = explosions.get(i);
+    for (int j =enemies.size()-1; j >= 0; j--) {
+      Enemy e = enemies.get(j);
+      float l2 = dist(ex.location.x, ex.location.y, e.location.x, e.location.y);
+
+      if (l2 < 100 ) {
+        heal = true;
+        e.vel.add(s.velocity);
+        e.eLife -= 0.2;
+        e.hit = true;
+        antal_p=30;
+        c = color(209, 46, 46);
+        systems.add(new ParticleSystem(e.location.x, e.location.y));
+      }
+      if (e.eLife <= 0) {
+        enemies.remove(e);
+      }
+    }
+  }
+}
+
 
 //Kollision mellem fjender og spillet////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void detect4() {
+void detect5() {
   for (Enemy_ball eb : eballs) {
     float l2 = dist(p.pos.x, p.pos.y, eb.location.x, eb.location.y);
     if (l2 < 20 && canHit >= 60) {
@@ -78,10 +109,10 @@ void detect4() {
 }
 
 
-void detect5() {
+void detect6() {
   for (Enemy e : enemies) {
     float l = dist(p.pos.x, p.pos.y, e.location.x, e.location.y);
-    if (l < 30 && canHit >= 60) {
+    if (l < 35 && canHit >= 60) {
       lives--;
       canHit = 0;
       antal_p=30;
