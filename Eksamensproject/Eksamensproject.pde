@@ -46,7 +46,7 @@ ArrayList <Explosion> explosions;
 
 /////VÅBENTYPE//////
 int weaponType=5;///
-int meleeType=1;////
+int meleeType=2;////
 ////////////////////
 
 
@@ -156,9 +156,9 @@ void draw() {
   canHit++;
   println(lives);
   
-  fx.render()
-    .bloom(0.0001, 20, 40)
-    .pixelate(300)
-    .compose();
+  //fx.render()
+    //.bloom(0.0001, 20, 40)
+    //.pixelate(300)
+    //.compose();
     
 }

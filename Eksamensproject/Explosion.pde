@@ -14,7 +14,7 @@ class Explosion {
 
   void display() {
     antal_p = 15;
-    c = color(255, random(60, 180), 0, round(2.55*decay));
+    c = color(255, random(60, 180), 0, round(6.375*decay));
     for (int i = 0; i < 5; i++) {
       systems.add(new ParticleSystem(location.x+random(-spread, spread), location.y+random(-spread, spread)));
     }
