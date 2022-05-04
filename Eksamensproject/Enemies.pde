@@ -1,4 +1,4 @@
-int enemyAntal = 1;
+int enemyAntal = 4;
 
 class Enemy {
   PVector location;
@@ -14,8 +14,8 @@ class Enemy {
   int shots;
   boolean activate;
 
-  Enemy(int type) {
-    location = new PVector(random(500, 1000), random(1000));
+  Enemy(int type, PVector pos) {
+    location = pos;
     vel = new PVector(0, 0);
     acc = new PVector(0, 0);
     enemyType = type;
@@ -178,28 +178,6 @@ class Enemy {
 ////////////////////////Spawn af enemy
 void enemySpawn() {
   for (int i = 0; i < enemyAntal; i++) {
-    enemies.add(new Enemy(round(random(1, 4))));
-
-    for (Enemy e : enemies) {
-      switch(e.enemyType) {
-
-      case 1:
-        e.eLife = 8;
-
-        break;
-
-      case 2:
-        e.eLife = 15;
-        break;
-
-      case 3:
-        e.eLife = 20;
-        break;
-
-      case 4:
-        e.eLife = 20;
-        break;
-      }
-    }
+    animations.add(new SpawnAnimation(new PVector(random(r.stopXMin+100, r.stopXMax-100), random(r.stopYMin+100, r.stopYMax-100))));
   }
 }

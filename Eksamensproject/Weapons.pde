@@ -134,6 +134,7 @@ class RocketProjectile extends Ball
   }
 
   void display() {
+    noStroke();
     fill(50, 50, 50);
     ellipse(location.x, location.y, 15, 15);
     antal_p = 3;

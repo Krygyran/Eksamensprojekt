@@ -50,6 +50,44 @@ void controlsMove() {
     c=(255);
     systems.add(new ParticleSystem(p.pos.x, p.pos.y));
   }
+  
+  
+  if (pressed[49]) {
+    weaponType = 1;
+  }
+  
+  
+  if (pressed[50]) {
+    weaponType = 2;
+  }
+  
+  
+  if (pressed[51]) {
+    weaponType = 3;
+  }
+  
+  
+  if (pressed[52]) {
+    weaponType = 4;
+  }
+  
+  
+  if (pressed[53]) {
+    weaponType = 5;
+  }
+  
+  
+  if (pressed[57]) {
+    meleeType = 1;
+  }
+  
+  if (pressed[48]) {
+    meleeType = 2;
+  }
+  
+  
+  
+  
 }
 
 void controlsShoot() {

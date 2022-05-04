@@ -10,7 +10,7 @@ class Ball {
   //constructor
   Ball() {
     location = new PVector(p.pos.x, p.pos.y);
-    velocity = new PVector((mouseX-p.pos.x)+random(-50,50), (mouseY-p.pos.y)+random(-50,50));
+    velocity = new PVector((mouseX-p.pos.x)+random(-50, 50), (mouseY-p.pos.y)+random(-50, 50));
     acceleration = new PVector(0, 0);
     life=1;
     decay = 1000;
@@ -26,9 +26,9 @@ class Ball {
 
   //viser kuglen
   void display() {
-    fill(255,255,77);
-    ellipse(location.x,location.y,12,12);
-  
+    noStroke();
+    fill(255, 255, 77);
+    ellipse(location.x, location.y, 12, 12);
   }
 }
 
@@ -37,8 +37,11 @@ void delete() { //kuglerne fra arraylisten når de er ude fra skærmen
 
   for (int i=balls.size()-1; i >= 0; i--) {
     Ball b = balls.get(i);
-    if (b.location.y < 0 - 300 || b.location.y > height + 300|| b.location.x > width + 300 || b.location.x <0 - 300) {
+    if (b.location.y < r.stopYMin + 5 || b.location.y > r.stopYMax - 5 || b.location.x > r.stopXMax - 5 || b.location.x < r.stopXMin + 5) {
       balls.remove(b);
+      antal_p=10;
+      c=color(255, random(175, 225), 38);
+      systems.add(new ParticleSystem(b.location.x, b.location.y));
     }
     if (b.decay < 1) {
       balls.remove(b);

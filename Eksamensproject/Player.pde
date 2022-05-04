@@ -11,7 +11,7 @@ class Player {
 
   Player() {
     pos = new PVector(400, 500);
-    vel = new PVector(0, 0);
+    vel = new PVector(0,0);
     rotation = new PVector(mouseX-pos.x, mouseY-pos.y);
   }
 
@@ -34,6 +34,7 @@ class Player {
 
     case 1:
       currentWeapon = new Pistol();
+      damage = 1;
       shtSpeedScale = 1.2;
       amount=1;
       knockBack = 1;
@@ -41,6 +42,7 @@ class Player {
     
     case 2:
       currentWeapon = new Pistol();
+      damage = 0.5;
       shtSpeedScale = 3.5;
       amount=6;
       knockBack = 1;
@@ -48,6 +50,7 @@ class Player {
       
      case 3:
       currentWeapon = new Pistol();
+      damage = 0.3;
       shtSpeedScale = 0.25;
       amount=1;
       knockBack = 0.5;
