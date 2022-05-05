@@ -1,4 +1,4 @@
-int enemyAntal = 4;
+int enemyAntal;
 
 class Enemy {
   PVector location;

@@ -88,7 +88,8 @@ void enterDoor() {
         defineDoors();
         p.pos = d.spawnPoint;
         enter = false;
-        enemySpawn();
+        enemyAntal = round(random(2,r.maxEnemies));
+        r.update();
       }
     }
     if(d.direction == saveDirection) {

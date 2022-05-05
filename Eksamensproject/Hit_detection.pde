@@ -71,7 +71,6 @@ void detect4() {
       float l2 = dist(ex.location.x, ex.location.y, e.location.x, e.location.y);
 
       if (l2 < 100 ) {
-        heal = true;
         e.eLife -= 0.1;
         e.hit = true;
         antal_p=30;

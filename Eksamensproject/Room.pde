@@ -9,6 +9,7 @@ class Room {
   int offsetY;
   int roomType;
   PVector spawnPoint;
+  int maxEnemies;
   
 
   Room() {
@@ -31,6 +32,7 @@ class Room {
       stopYMax = 900;
       offsetX = 100;
       offsetY = 5;
+      maxEnemies = 4;
       break;
 
     case 2:
@@ -40,6 +42,7 @@ class Room {
       stopYMax = 900;
       offsetY = 50;
       offsetX = 250;
+      maxEnemies = 4;
       break;
 
     case 3:
@@ -49,6 +52,7 @@ class Room {
       stopYMax = 995;
       offsetX = 5;
       offsetY = 5;
+      maxEnemies = 6;
       break;
 
     case 4:
@@ -58,6 +62,7 @@ class Room {
       stopYMax = 995;
       offsetX = 400;
       offsetY = 5;
+      maxEnemies = 3;
       break;
 
     case 5:
@@ -67,8 +72,11 @@ class Room {
       stopYMax = 900;
       offsetX = 100;
       offsetY = 100;
+      maxEnemies = 5;
       break;
     }
+    
+    enemySpawn();
   }
 
   void display() {

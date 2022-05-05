@@ -67,13 +67,13 @@ void setup() {
   eballs = new ArrayList<Enemy_ball>();
   explosions = new ArrayList<Explosion>();
   animations = new ArrayList<SpawnAnimation>();
+  r.update();
 }
 
 boolean spawn = true;
 
 void draw() {
   background(0);
-  r.update();
   r.display();
   
   if(spawn == true){
