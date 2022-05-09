@@ -10,7 +10,7 @@ class Enemy_ball {
   //constructor
   Enemy_ball(float ex, float ey, float _speed) {
     location = new PVector(ex, ey);
-    velocity = new PVector((p.pos.x-location.x) +random(-100,100), (p.pos.y-location.y)+random(-100,100));
+    velocity = new PVector((p.pos.x-location.x) +random(-220,220), (p.pos.y-location.y)+random(-220,220));
     acceleration = new PVector(0, 0);
     life=1;
     decay = 1000;

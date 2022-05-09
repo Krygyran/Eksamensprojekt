@@ -12,14 +12,14 @@ class Sword {
     velocity = new PVector(mouseX-p.pos.x, mouseY-p.pos.y);
     acceleration = new PVector(0, 0);
     life=100;
-    decay = 12;
+    decay = 13;
   }
 
   void update()
   {
     acceleration = PVector.sub(p.pos, location); //trækker kuglen tilbage mod startpositionen
     acceleration.mult(0.08);
-    velocity.mult(1.11);
+    velocity.mult(1.2);
     velocity.add(acceleration);
     velocity.limit(30);
     location.add(velocity);  

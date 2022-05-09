@@ -65,6 +65,7 @@ class Door {
 
   void display() {
    if(enter == true){
+    stroke(255);
     rectMode(CENTER);
     fill(255, 0, 0);
     rect(pos.x, pos.y, w, h);
@@ -89,6 +90,7 @@ void enterDoor() {
         p.pos = d.spawnPoint;
         enter = false;
         enemyAntal = round(random(2,r.maxEnemies));
+        deleteCoins();
         r.update();
       }
     }

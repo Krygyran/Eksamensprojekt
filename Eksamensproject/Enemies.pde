@@ -125,6 +125,11 @@ class Enemy {
 
       rect(location.x, location.y, 30, 30);
       speed = 8;
+      
+      if (eAttackTimer > 120) {
+        shots = 0; 
+        eAttackTimer = 0;
+      }
 
 
 

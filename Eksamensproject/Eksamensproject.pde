@@ -15,6 +15,7 @@ color c1;
 color c2;
 int amount;
 String saveDirection;
+boolean spawn = true;
 
 //Stats
 float knockBack;
@@ -33,11 +34,12 @@ Player p = new Player();
 Explosion ex = new Explosion(new PVector(1, 1));
 Ball b = new Ball();
 Sword s = new Sword(p.pos);
-Enemy e = new Enemy(round(random(1, 3)),new PVector(0,0));
+Enemy e = new Enemy(round(random(1, 3)), new PVector(0, 0));
 Enemy_ball eb = new Enemy_ball(1, 1, 1);
 Room r = new Room();
 Door d = new Door();
-SpawnAnimation sa = new SpawnAnimation(new PVector(1,1));
+SpawnAnimation sa = new SpawnAnimation(new PVector(1, 1));
+Coin C = new Coin(new PVector(0, 0));
 
 PostFX fx;
 
@@ -48,11 +50,12 @@ ArrayList <Enemy_ball> eballs;
 ArrayList <Enemy> enemies;
 ArrayList <Explosion> explosions;
 ArrayList <SpawnAnimation> animations;
+ArrayList <Coin> coins;
 Door[] doors = new Door[2];
 
 /////VÅBENTYPE//////
 int weaponType=2;///
-int meleeType=2;////
+int meleeType=1;////
 ////////////////////
 
 
@@ -67,20 +70,21 @@ void setup() {
   eballs = new ArrayList<Enemy_ball>();
   explosions = new ArrayList<Explosion>();
   animations = new ArrayList<SpawnAnimation>();
+  coins = new ArrayList<Coin>();
   r.update();
 }
 
-boolean spawn = true;
+
 
 void draw() {
   background(0);
   r.display();
-  
-  if(spawn == true){
-   defineDoors();
-   spawn = false;
+
+  if (spawn == true) {
+    defineDoors();
+    spawn = false;
   }
-  
+
   detect();
   wallCollision();
   clearEX();
@@ -92,13 +96,18 @@ void draw() {
   detect6();
   delete();
   deleteE();
-  
-  for(Door d : doors){
+  coinDetect();
+
+  for (Coin C : coins) {
+    C.Goldencoin();
+  }
+
+  for (Door d : doors) {
     d.update();
     d.display();
   }
-  
-  for(Ball b : balls) {
+
+  for (Ball b : balls) {
     b.update();
     b.display();
     b.decay--;
@@ -113,8 +122,8 @@ void draw() {
     e.update();
     e.display();
   }
-  
-  for (SpawnAnimation sa : animations){
+
+  for (SpawnAnimation sa : animations) {
     sa.display();
     sa.decay--;
   }
@@ -140,12 +149,12 @@ void draw() {
   p.display();
   p.weaponDetect();
   enterDoor();
- 
-  
-  
+
+
+
   controlsMove();
   controlsShoot();
-  
+
 
   if (dashReset == 60) {
     dashTimer = 0;
@@ -168,8 +177,8 @@ void draw() {
   if (lives > maxLives) {
     lives = maxLives;
   }
-  
-  if(animations.size() == 0 && enemies.size() == 0){
+
+  if (animations.size() == 0 && enemies.size() == 0) {
     enter = true;
   }
 
@@ -183,8 +192,8 @@ void draw() {
   temp++;
   canHit++;
 
-  //fx.render()
-  //.bloom(0.0001, 20, 40)
-  //.pixelate(300)
-  //.compose();
+  fx.render()
+    .bloom(0.0001, 20, 40)
+    .pixelate(300)
+    .compose();
 }

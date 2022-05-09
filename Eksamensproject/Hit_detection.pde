@@ -27,6 +27,7 @@ void detect2() {
       }
       if (e.eLife <= 0) {
         enemies.remove(e);
+        coins.add(new Coin(e.location));
       }
       if (b.life < 1) {
         balls.remove(b);
