@@ -6,29 +6,33 @@ class Enemy_ball {
   float speed = 20;
   int life;
   int decay;
+  int c2;
+  int t;
 
   //constructor
-  Enemy_ball(float ex, float ey, float _speed) {
+  Enemy_ball(float ex, float ey, float _speed, color c_, int t_) {
     location = new PVector(ex, ey);
-    velocity = new PVector((p.pos.x-location.x) +random(-220,220), (p.pos.y-location.y)+random(-220,220));
+    velocity = new PVector((p.pos.x-location.x) +random(-150,150), (p.pos.y-location.y)+random(-150,150));
     acceleration = new PVector(0, 0);
     life=1;
     decay = 1000;
     speed = _speed;
+    c2=c_;
+    t = t_;
   }
 
 
   //opdaterer kuglens position
   void update() {
     velocity.normalize();
-    velocity.mult(15*speed);
+    velocity.mult(7*speed);
     location.add(velocity);
   }
 
   //viser kuglen
   void display() {
-    antal_p = 2;
-    c = color(209, 46, 46);
+    antal_p = t;
+    c=c2;
     systems.add(new ParticleSystem(location.x, location.y));
   }
 }

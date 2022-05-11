@@ -4,6 +4,7 @@ boolean rightPressed;
 boolean leftPressed;
 boolean[] pressed = new boolean[256];
 PVector spawnPos = new PVector();
+boolean reset = false;
 
 void keyPressed()
 {
@@ -50,44 +51,40 @@ void controlsMove() {
     c=(255);
     systems.add(new ParticleSystem(p.pos.x, p.pos.y));
   }
-  
-  
+
+
   if (pressed[49]) {
     weaponType = 1;
   }
-  
-  
+
+
   if (pressed[50]) {
     weaponType = 2;
   }
-  
-  
+
+
   if (pressed[51]) {
     weaponType = 3;
   }
-  
-  
+
+
   if (pressed[52]) {
     weaponType = 4;
   }
-  
-  
+
+
   if (pressed[53]) {
     weaponType = 5;
   }
-  
-  
+
+
   if (pressed[57]) {
     meleeType = 1;
   }
-  
+
   if (pressed[48]) {
     meleeType = 2;
   }
-  
-  
-  
-  
 }
 
 void controlsShoot() {
@@ -109,34 +106,35 @@ void controlsShoot() {
         }
       }
     }
-    
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
-    if (mouseButton == RIGHT) {
-      if (hitTimer > round(20*hitSpeedScale)) {
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    if (hitTimer > round(20*hitSpeedScale) || resetTimer > 5) {
+      if (mouseButton == RIGHT) {
+
+        reset=false;
+        resetTimer=0;
         switch(meleeType) {
 
         case 1:
+          c2 = color(150, 0, 0);
           c1 = color(255);
-          c2 = color(150,0,0);
-          swords.add(new Sword(new PVector(p.pos.x,p.pos.y)));
+          swords.add(new Sword(new PVector(p.pos.x, p.pos.y)));
           hitSpeedScale = 1.2;
           mDamage = 0.5;
           break;
 
         case 2:
           swords.add(new Sword(p.pos));
-          c1 = color(255,100,0);
-          c2 = color(0,200,255);
-          hitSpeedScale = 3;
+          c1 = color(255, 122, 195);
+          c2 = color(102, 71, 52);
+          hitSpeedScale = 10;
           mDamage = 0.5;
-          if(s.decay > 0) {
-           canHit= 0;
+          if (s.decay > 0) {
+            canHit= 0;
           } else {
-           canHit = 60; 
+            canHit = 60;
           }
           break;
-          
         }
         hitTimer = 0;
       }

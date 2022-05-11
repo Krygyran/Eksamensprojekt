@@ -10,17 +10,21 @@ int antal_p;
 int shootTimer;
 int hitTimer;
 int healTimer;
+int resetTimer;
 color c;
 color c1;
 color c2;
 int amount;
 String saveDirection;
 boolean spawn = true;
+int score;
+int combo=1;
+int scoreHit;
 
 //Stats
 float knockBack;
-int maxLives = 10;
-int lives = 10;
+int maxLives = 5;
+int lives = 5;
 float shtSpeedScale;
 float hitSpeedScale;
 float damage = 1;
@@ -35,11 +39,12 @@ Explosion ex = new Explosion(new PVector(1, 1));
 Ball b = new Ball();
 Sword s = new Sword(p.pos);
 Enemy e = new Enemy(round(random(1, 3)), new PVector(0, 0));
-Enemy_ball eb = new Enemy_ball(1, 1, 1);
+Enemy_ball eb = new Enemy_ball(1, 1, 1,color(1,1,1),2);
 Room r = new Room();
 Door d = new Door();
-SpawnAnimation sa = new SpawnAnimation(new PVector(1, 1));
+SpawnAnimation sa = new SpawnAnimation(new PVector(1, 1),1);
 Coin C = new Coin(new PVector(0, 0));
+Boss bo = new Boss(1, new PVector(500, 200));
 
 PostFX fx;
 
@@ -94,9 +99,21 @@ void draw() {
   detect4();
   detect5();
   detect6();
+
+  if (r.boss==true) {
+    detect7();
+    detect8();
+    detect9();
+  }
+
   delete();
   deleteE();
   coinDetect();
+
+  if (r.boss == true) {
+    bo.update();
+    bo.display();
+  }
 
   for (Coin C : coins) {
     C.Goldencoin();
@@ -166,6 +183,9 @@ void draw() {
 
   if (healTimer > 180 && heal == true) {
     lives++;
+    antal_p=30;
+    c=color(0, 200, 0);
+    systems.add(new ParticleSystem(p.pos.x, p.pos.y));
     healTimer = 0;
     heal = false;
   }
@@ -178,8 +198,12 @@ void draw() {
     lives = maxLives;
   }
 
-  if (animations.size() == 0 && enemies.size() == 0) {
+  if (animations.size() == 0 && enemies.size() == 0 && r.boss == false) {
     enter = true;
+  }
+
+  if (reset==true) {
+    resetTimer++;
   }
 
 
@@ -191,9 +215,13 @@ void draw() {
   hitTimer++;
   temp++;
   canHit++;
+  scoreHit--;
+
 
   fx.render()
     .bloom(0.0001, 20, 40)
     .pixelate(300)
     .compose();
+
+  score();
 }

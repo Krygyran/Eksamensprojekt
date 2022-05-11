@@ -10,10 +10,11 @@ class Room {
   int roomType;
   PVector spawnPoint;
   int maxEnemies;
-  
+  boolean boss = false;
+
 
   Room() {
-    roomType= round(random(1, 5));
+    roomType= 7;//round(random(1, 6));
     stopXMin = 50;
     stopXMax = 50;
     stopYMin = 50;
@@ -74,9 +75,33 @@ class Room {
       offsetY = 100;
       maxEnemies = 5;
       break;
+
+    case 6:
+      stopXMin = 100;
+      stopXMax = 1400;
+      stopYMin = 100;
+      stopYMax = 900;
+      offsetX = 100;
+      offsetY = 100;
+      maxEnemies = 5;
+      println("test");
+      break;
+
+    case 7:
+      stopXMin = 5;
+      stopXMax = 1495;
+      stopYMin = 5;
+      stopYMax = 995;
+      offsetX = 5;
+      offsetY = 5;
+      boss = true;
+
+      break;
     }
-    
-    enemySpawn();
+
+    if (boss == false) {
+      enemySpawn();
+    }
   }
 
   void display() {
@@ -87,20 +112,31 @@ class Room {
   }
 }
 
-void wallCollision(){
- if(p.pos.x < r.stopXMin+9) {
-   p.pos.x = r.stopXMin+10;
- }
- if(p.pos.x > r.stopXMax-9) {
-   p.pos.x = r.stopXMax-10;
- }
- if(p.pos.y < r.stopYMin+9) {
-   p.pos.y = r.stopYMin+10;
- }
- if(p.pos.y > r.stopYMax-9) {
-   p.pos.y = r.stopYMax-10;
- }
- 
+void wallCollision() {
+  if (p.pos.x < r.stopXMin+9) {
+    p.pos.x = r.stopXMin+10;
+  }
+  if (p.pos.x > r.stopXMax-9) {
+    p.pos.x = r.stopXMax-10;
+  }
+  if (p.pos.y < r.stopYMin+9) {
+    p.pos.y = r.stopYMin+10;
+  }
+  if (p.pos.y > r.stopYMax-9) {
+    p.pos.y = r.stopYMax-10;
+  }
   
+  if (bo.location.x < r.stopXMin+9) {
+    bo.location.x = r.stopXMin+10;
+  }
+  if (bo.location.x > r.stopXMax-9) {
+    bo.location.x = r.stopXMax-10;
+  }
+  if (bo.location.y < r.stopYMin+9) {
+    bo.location.y = r.stopYMin+10;
+  }
+  if (bo.location.y > r.stopYMax-9) {
+    bo.location.y = r.stopYMax-10;
+  }
   
 }

@@ -5,9 +5,11 @@ class Enemy {
   PVector vel;
   PVector acc;
   int enemyType;
+  int maxLife;
   float speed;
   float eLife;
   boolean hit;
+  boolean execute = false;
   int eshootTimer;
   int eAmount = 5;
   int eAttackTimer;
@@ -37,17 +39,20 @@ class Enemy {
     rectMode(CENTER);
     stroke(0);
     strokeWeight(1);
-    switch(enemyType) {
+switch(enemyType) {
 
       ////////////////////////Første Enemy
 
     case 1:
-      if (hit == true) {
+      if (hit == true || execute == true) {
         fill(255, 80, 80);
         speed = 20;
         hit = false;
       } else {
         fill(200);
+      }
+      if (eLife <= 0.2*maxLife) {
+        execute = true;
       }
 
       rect(location.x, location.y, 50, 50);
@@ -58,7 +63,7 @@ class Enemy {
         speed = 1;
         eshootTimer++;
         if (eshootTimer > random(20, 40) ) {
-          eballs.add(new Enemy_ball(location.x, location.y, 2));
+          eballs.add(new Enemy_ball(location.x, location.y, 2,color(222, 187, 31),2));
           eshootTimer = 0;
           shots++;
           activate = false;
@@ -79,12 +84,15 @@ class Enemy {
 
       ////////////////////////Anden enemy
     case 2:
-      if (hit == true) {
+      if (hit == true || execute == true) {
         fill(255, 80, 80);
         hit = false;
         speed = 20;
       } else {
         fill(200);
+      }
+      if (eLife <= 0.2*maxLife) {
+        execute = true;
       }
 
       speed = 2;
@@ -95,7 +103,7 @@ class Enemy {
         speed = 1;
         eshootTimer++;
         if (eshootTimer > random(5, 10) ) {
-          eballs.add(new Enemy_ball(location.x, location.y, 1));
+          eballs.add(new Enemy_ball(location.x, location.y, 2,color(222, 187, 31),2));
           eshootTimer = 0;
           shots++;
           activate = false;
@@ -115,17 +123,20 @@ class Enemy {
 
       ////////////////////////Tredje Enemy
     case 3:
-      if (hit == true) {
+      if (hit == true || execute == true) {
         fill(255, 80, 80);
         speed = 20;
         hit = false;
       } else {
         fill(200);
       }
+      if (eLife <= 0.2*maxLife) {
+        execute = true;
+      }
 
       rect(location.x, location.y, 30, 30);
       speed = 8;
-      
+
       if (eAttackTimer > 120) {
         shots = 0; 
         eAttackTimer = 0;
@@ -137,12 +148,15 @@ class Enemy {
 
       ////////////////////////Fjerde Enemy     
     case 4:
-      if (hit == true) {
+      if (hit == true || execute == true) {
         fill(255, 80, 80);
         speed = 20;
         hit = false;
       } else {
         fill(200);
+      }
+      if (eLife <= 0.2*maxLife) {
+        execute = true;
       }
 
       rect(location.x, location.y, 45, 45);
@@ -155,7 +169,7 @@ class Enemy {
         if (eshootTimer > random(30, 60) ) {
 
           for (int i = 0; i < eAmount; i++) {  
-            eballs.add(new Enemy_ball(location.x, location.y, 1.5));
+            eballs.add(new Enemy_ball(location.x, location.y, 2,color(222, 187, 31),2));
           }
           eshootTimer = 0;
           shots++;
@@ -176,6 +190,7 @@ class Enemy {
     if (activate == true) {
       eAttackTimer++;
     }
+    
   }
 }
 
@@ -183,6 +198,6 @@ class Enemy {
 ////////////////////////Spawn af enemy
 void enemySpawn() {
   for (int i = 0; i < enemyAntal; i++) {
-    animations.add(new SpawnAnimation(new PVector(random(r.stopXMin+100, r.stopXMax-100), random(r.stopYMin+100, r.stopYMax-100))));
+    animations.add(new SpawnAnimation(new PVector(random(r.stopXMin+100, r.stopXMax-100), random(r.stopYMin+100, r.stopYMax-100)),round(random(1, 4))));
   }
 }

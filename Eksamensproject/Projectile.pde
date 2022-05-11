@@ -43,7 +43,7 @@ void delete() { //kuglerne fra arraylisten når de er ude fra skærmen
       c=color(255, random(175, 225), 38);
       systems.add(new ParticleSystem(b.location.x, b.location.y));
     }
-    if (b.decay < 1) {
+    if (b.decay < 1 || b.life < 1) {
       balls.remove(b);
     }
   }
