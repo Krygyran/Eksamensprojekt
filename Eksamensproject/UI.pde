@@ -41,6 +41,7 @@ void score() {
   fill(255);
   textSize(30);
   text("Score:"+score, 25, 50);
+  text("Highscore:"+highscore, 650, 50);
   text("Coins:"+Coinz, 1350, 50);
 
 
@@ -146,6 +147,10 @@ void deathText() {
       r.update();
       r.start = true;
       Coinz = 0;
+      if (score > highscore) {
+        UpdateScore();
+      }
+      score = 0;
       artifactType = 0;
       worldCounter = 1;
       enemies.clear();
@@ -194,6 +199,10 @@ void deathText() {
       r.update();
       r.start = true;
       Coinz = 0;
+      if (score > highscore) {
+        UpdateScore();
+      }
+      score = 0;
       artifactType = 0;
       worldCounter = 1;
       enemies.clear();

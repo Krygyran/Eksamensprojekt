@@ -65,3 +65,22 @@ void UpdateData()
   }
   db.close();
 }
+
+
+void UpdateScore()
+{
+  //Connect to database
+  db = new SQLite( this, "saveFiles.sqlite" );
+
+  //If connection is succesfull
+  if ( db.connect() )
+  {
+      db.query( "UPDATE saveFile SET highScore = '" +score+ "' WHERE sID = " + sID+ ";");
+    
+  } else
+  {
+    //Display error trying to get data from DB
+    println("Error DB");
+  }
+  db.close();
+}
