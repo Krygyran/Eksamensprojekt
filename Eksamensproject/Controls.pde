@@ -50,7 +50,7 @@ void controlsMove() {
       if (dashTimer < 1) {
         damage = 0.4;
         for (int i = 0; i < 20; i++) {
-          balls.add(new PosseidonProjectile());
+          balls.add(new PoseidonProjectile());
         }
       }
     }

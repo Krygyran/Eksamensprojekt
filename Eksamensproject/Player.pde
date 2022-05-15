@@ -57,7 +57,7 @@ class Player {
       break;
 
     case 4:
-      currentWeapon = new Dragon();
+      currentWeapon = new Flame();
       shtSpeedScale = 0.1;
       damage = 0.05;
       antal_p = 5;
